@@ -36,6 +36,19 @@ export class SubjectComponent {
   onEdit(subject: Subject): void {
     this.subject = new Subject(subject.id, subject.description);;
   }
+
+  onDelete(id: number): void {
+    this.subjectService.delete(id).subscribe(
+      response => {
+        this.toastr.success('Assunto removido com sucesso.');
+        this.getAll();
+      },
+      error => {
+        this.toastr.warning(error.error.message);
+      }
+    );
+  }
+
   edit(subject: Subject): void {
     this.subjectService.update(subject).subscribe(
       response => {

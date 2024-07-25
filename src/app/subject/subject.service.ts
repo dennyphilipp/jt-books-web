@@ -21,6 +21,10 @@ export class SubjectService {
     return this.http.put(this.apiUrl, body);
   }
 
+  delete(id: number): Observable<any> {
+    return this.http.delete(this.apiUrl + '/' + id);
+  }
+
   getAll(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/find-all`);
   }
