@@ -11,6 +11,10 @@ import { AuthorComponent } from './author/author.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentTypeComponent } from './payment-type/payment-type.component';
 import { SubjectComponent } from './subject/subject.component';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
     declarations: [
@@ -26,7 +30,11 @@ import { SubjectComponent } from './subject/subject.component';
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        CommonModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot(),
+        NgxPaginationModule
     ],
     providers: [],
     bootstrap: [AppComponent]
