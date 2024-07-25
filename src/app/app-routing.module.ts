@@ -14,7 +14,7 @@ const routes: Routes = [
     { path: 'autor', component: AuthorComponent },
     { path: 'assunto', component: SubjectComponent },
     { path: 'pagamento', component: PaymentComponent },
-    { path: 'tipo-de-pagamentos', component: PaymentTypeComponent },
+    { path: 'tipo-pagamento', component: PaymentTypeComponent },
     // { path: '**', redirectTo: '', pathMatch: 'full' } // Rota curinga para redirecionar para a Home
   ];
 
