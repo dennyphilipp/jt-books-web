@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Subject } from './subject.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,14 @@ export class SubjectService {
 
   constructor(private http: HttpClient) { }
 
-  createSubject(description: string): Observable<any> {
+  create(description: string): Observable<any> {
     const body = { description };
     return this.http.post(this.apiUrl, body);
+  }
+
+  update(subject: Subject): Observable<any> {
+    const body = subject;
+    return this.http.put(this.apiUrl, body);
   }
 
   getAll(): Observable<any[]> {

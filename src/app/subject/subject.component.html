@@ -1,9 +1,9 @@
 <div class="container mt-4">
     <h4>Cadastrar Assunto</h4>
-    <form (ngSubmit)="onSave()">
+    <form (ngSubmit)="onSave()" class="mt-5">
         <div class="form-group">
             <label for="description">Descrição</label>
-            <input type="text" class="form-control" id="description" [(ngModel)]="description" name="description"
+            <input type="text" class="form-control" id="description" [(ngModel)]="subject.description" name="description"
                 placeholder="Digite a descrição" maxlength="25">
         </div>
         <button type="submit" class="btn btn-primary mt-2">Salvar</button>
@@ -26,7 +26,7 @@
                 <td>{{ subject.id }}</td>
                 <td>{{ subject.description }}</td>
                 <td>
-                    <button class="btn" title="Editar">
+                    <button class="btn" title="Editar" (click)="onEdit(subject)">
                         <i class="bi bi-pencil"></i>
                     </button>
                     <button class="btn" title="Remover"><i class="bi bi-trash"></i></button>
