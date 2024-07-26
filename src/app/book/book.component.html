@@ -1,1 +1,71 @@
-<p>book works!</p>
+<div class="container mt-4">
+    <h4>Cadastrar Livro</h4>
+    <form (ngSubmit)="onSave()" class="mt-5">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="description">Título</label>
+                    <input type="text" class="form-control" id="title" [(ngModel)]="book.title" name="title"
+                        placeholder="Digite a descrição" maxlength="40">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="description">Editora</label>
+                    <input type="text" class="form-control" id="publisher" [(ngModel)]="book.publischer" name="publisher"
+                        placeholder="Digite a editora" maxlength="40">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="description">Edição</label>
+                    <input type="number" class="form-control" id="version" [(ngModel)]="book.version" name="version"
+                        placeholder="Digite a edição" >
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="year">Ano</label>
+                    <input type="text" class="form-control" id="year" [(ngModel)]="book.year" name="year"
+                        placeholder="Digite a ano" maxlength="4">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Salvar</button>
+    </form>
+
+</div>
+
+<div class="container mt-4">
+    <h4>Lista de Livros</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Título</th>
+                <th>Editora</th>
+                <th>Edição</th>
+                <th>Ano</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of books | paginate: { itemsPerPage: 5, currentPage: p }">
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.publischer }}</td>
+                <td>{{ book.version }}</td>
+                <td>{{ book.year }}</td>
+
+                <td>
+                    <button class="btn" title="Editar" (click)="onEdit(book)">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn" title="Remover" (click)="onDelete(book.id)"><i class="bi bi-trash" ></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
