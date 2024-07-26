@@ -12,15 +12,15 @@
             <div class="col">
                 <div class="form-group">
                     <label for="description">Editora</label>
-                    <input type="text" class="form-control" id="publisher" [(ngModel)]="book.publischer" name="publisher"
-                        placeholder="Digite a editora" maxlength="40">
+                    <input type="text" class="form-control" id="publisher" [(ngModel)]="book.publischer"
+                        name="publisher" placeholder="Digite a editora" maxlength="40">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label for="description">Edição</label>
                     <input type="number" class="form-control" id="version" [(ngModel)]="book.version" name="version"
-                        placeholder="Digite a edição" >
+                        placeholder="Digite a edição">
                 </div>
             </div>
             <div class="col">
@@ -28,6 +28,27 @@
                     <label for="year">Ano</label>
                     <input type="text" class="form-control" id="year" [(ngModel)]="book.year" name="year"
                         placeholder="Digite a ano" maxlength="4">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="">Autores</label>
+                    <select class="form-control" id="author" name="author" [(ngModel)]="book.authors"
+                        multiple>
+                        <option *ngFor="let author of authors" [ngValue]="author">{{ author.name }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label for="">Assuntos</label>
+                    <select class="form-control" id="subject" name="subject" [(ngModel)]="book.subjects"
+                        multiple>
+                        <option *ngFor="let subject of subjects" [ngValue]="subject">{{ subject.description }}</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -61,7 +82,7 @@
                     <button class="btn" title="Editar" (click)="onEdit(book)">
                         <i class="bi bi-pencil"></i>
                     </button>
-                    <button class="btn" title="Remover" (click)="onDelete(book.id)"><i class="bi bi-trash" ></i></button>
+                    <button class="btn" title="Remover" (click)="onDelete(book.id)"><i class="bi bi-trash"></i></button>
                 </td>
             </tr>
         </tbody>

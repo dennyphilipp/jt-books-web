@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { BookService } from './book.service';
+import { AuthorService } from '../author/author.service';
+import { SubjectService } from '../subject/subject.service';
 import { ToastrService } from 'ngx-toastr';
 import { Book } from './book.model';
+import { Author } from '../author/author.model';
+import { Subject } from '../subject/subject.model';
+
+
 
 @Component({
   selector: 'app-book',
@@ -9,17 +15,25 @@ import { Book } from './book.model';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent {
-  book: Book = new Book('', '', 0, '', 0);
+  book: Book = new Book('', '', 0, '', 0, [], []);
   books: any[] = [];
+  authors: Author[] = [];
+  subjects: Subject[] = [];
+
   p: number = 1;
 
   constructor(private bookService: BookService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authorService: AuthorService,
+    private subjectService: SubjectService
   ) {
   }
 
   ngOnInit(): void {
     this.getAll();
+    this.getAllAuthors();
+    this.getAllSubjects();
+
   }
 
   getAll(): void {
@@ -33,8 +47,30 @@ export class BookComponent {
     );
   }
 
+  getAllAuthors(): void {
+    this.authorService.getAll().subscribe(
+      data => {
+        this.authors = data;
+      },
+      error => {
+        this.toastr.warning("Falha ao carregar os autores.");
+      }
+    );
+  }
+
+  getAllSubjects(): void {
+    this.subjectService.getAll().subscribe(
+      data => {
+        this.subjects = data;
+      },
+      error => {
+        this.toastr.warning("Falha ao carregar os assuntos.");
+      }
+    );
+  }
+
   onEdit(book: Book): void {
-    this.book = new Book(book.title, book.publischer, book.version, book.year, book.id);
+    this.book = new Book(book.title, book.publischer, book.version, book.year, book.id, [], []);
   }
 
   onDelete(id: number): void {
@@ -52,7 +88,7 @@ export class BookComponent {
   edit(book: Book): void {
     this.bookService.update(book).subscribe(
       response => {
-        this.book = new Book('', '', 0, '', 0);
+        this.book = new Book('', '', 0, '', 0, [], []);
         this.toastr.success('Livro alterado com sucesso.');
         this.getAll();
       },
@@ -65,7 +101,7 @@ export class BookComponent {
   save(): void {
     this.bookService.create(this.book).subscribe(
       response => {
-        this.book = new Book('', '', 0, '', 0);
+        this.book = new Book('', '', 0, '', 0, [], []);
         this.toastr.success('Livro cadastro com sucesso.');
         this.getAll();
       },

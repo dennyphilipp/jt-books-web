@@ -34,7 +34,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
         CommonModule,
         BrowserAnimationsModule,
         ToastrModule.forRoot(),
-        NgxPaginationModule
+        NgxPaginationModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
