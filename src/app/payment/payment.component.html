@@ -1,1 +1,65 @@
-<p>payment works!</p>
+<div class="container mt-4">
+    <h4>Cadastrar Pagamento</h4>
+    <form (ngSubmit)="onSave()" class="mt-5">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="payment-type">Tipo Pagamento</label>
+                    <select class="form-control" id="payment-type" name="payment-type" [(ngModel)]="payment.typeId">
+                        <option *ngFor="let type of types" [ngValue]="type.id">{{ type.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="book">Livro</label>
+                    <select class="form-control" id="book" name="book" [(ngModel)]="payment.bookId">
+                        <option *ngFor="let book of books" [ngValue]="book.id">{{ book.title }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="value">Valor</label>
+                    <input type="number" step="0.01" class="form-control" id="value" [(ngModel)]="payment.value"
+                        name="value" placeholder="Digite o valor">
+                </div>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Salvar</button>
+    </form>
+
+</div>
+
+<div class="container mt-4">
+    <h4>Lista de Pagamentos</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Livro</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let payment of payments | paginate: { itemsPerPage: 5, currentPage: p }">
+                <td>{{ payment.id }}</td>
+                <td>{{ payment.book }}</td>
+                <td>{{ payment.type }}</td>
+                <td>{{ payment.value }}</td>
+
+                <td>
+                    <button class="btn" title="Editar" (click)="onEdit(payment)">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn" title="Remover" (click)="onDelete(payment.id)"><i
+                            class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
