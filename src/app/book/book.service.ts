@@ -7,6 +7,7 @@ import { Book } from './book.model';
   providedIn: 'root'
 })
 export class BookService {
+
   private apiUrl = 'http://localhost:5077/api/book';
 
   constructor(private http: HttpClient) { }
@@ -25,5 +26,10 @@ export class BookService {
 
   getAll(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/find-all`);
+  }
+
+  getById(id: any): Observable<Book> {
+    return this.http.get<Book>(`${this.apiUrl}/find/${id}`);
+
   }
 }

@@ -69,8 +69,15 @@ export class BookComponent {
     );
   }
 
-  onEdit(book: Book): void {
-    this.book = new Book(book.title, book.publischer, book.version, book.year, book.id, [], []);
+  onEdit(id: number): void {
+    this.bookService.getById(id).subscribe(
+      response => {
+        this.book = response;
+      },
+      error => {
+        this.toastr.warning(error.error.message);
+      }
+    );
   }
 
   onDelete(id: number): void {

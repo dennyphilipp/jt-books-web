@@ -37,7 +37,7 @@
                     <label for="">Autores</label>
                     <select class="form-control" id="author" name="author" [(ngModel)]="book.authors"
                         multiple>
-                        <option *ngFor="let author of authors" [ngValue]="author">{{ author.name }}</option>
+                        <option *ngFor="let author of authors" [ngValue]="author.id">{{ author.name }}</option>
                     </select>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                     <label for="">Assuntos</label>
                     <select class="form-control" id="subject" name="subject" [(ngModel)]="book.subjects"
                         multiple>
-                        <option *ngFor="let subject of subjects" [ngValue]="subject">{{ subject.description }}</option>
+                        <option *ngFor="let subject of subjects" [ngValue]="subject.id">{{ subject.description }}</option>
                     </select>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                 <td>{{ book.year }}</td>
 
                 <td>
-                    <button class="btn" title="Editar" (click)="onEdit(book)">
+                    <button class="btn" title="Editar" (click)="onEdit(book.id)">
                         <i class="bi bi-pencil"></i>
                     </button>
                     <button class="btn" title="Remover" (click)="onDelete(book.id)"><i class="bi bi-trash"></i></button>
