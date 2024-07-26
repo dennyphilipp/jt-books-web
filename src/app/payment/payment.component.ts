@@ -122,12 +122,6 @@ export class PaymentComponent {
       this.save();
   }
 
-  onSelectType(id: number): void {
-    this.payment.typeId = id;
-  }
+  
 
-  onSelectBook(id: any): void {
-    console.log(id);
-    // this.payment.bookId = id;
-  }
 }

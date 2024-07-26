@@ -35,8 +35,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="">Autores</label>
-                    <select class="form-control" id="author" name="author" [(ngModel)]="book.authors"
-                        multiple>
+                    <select class="form-control" id="author" name="author" [(ngModel)]="book.authors" multiple>
                         <option *ngFor="let author of authors" [ngValue]="author.id">{{ author.name }}</option>
                     </select>
                 </div>
@@ -45,20 +44,26 @@
             <div class="col">
                 <div class="form-group">
                     <label for="">Assuntos</label>
-                    <select class="form-control" id="subject" name="subject" [(ngModel)]="book.subjects"
-                        multiple>
-                        <option *ngFor="let subject of subjects" [ngValue]="subject.id">{{ subject.description }}</option>
+                    <select class="form-control" id="subject" name="subject" [(ngModel)]="book.subjects" multiple>
+                        <option *ngFor="let subject of subjects" [ngValue]="subject.id">{{ subject.description }}
+                        </option>
                     </select>
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-2">Salvar</button>
+
+        <div class="btn-group mt-2" >
+            <button type="submit" class="btn btn-primary me-2">Salvar</button>
+            <button type="button" class="btn btn-secondary" (click)="downloadReport()"><i class="bi bi-filetype-pdf"></i> Gerar Relatório</button>
+        </div>
+
     </form>
 
 </div>
 
 <div class="container mt-4">
-    <h4>Lista de Livros</h4>
+    <h4>Lista de Livros </h4>
+
     <table class="table table-striped">
         <thead>
             <tr>

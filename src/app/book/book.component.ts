@@ -124,4 +124,22 @@ export class BookComponent {
     else
       this.save();
   }
+
+  downloadReport(): void {
+    this.bookService.getReport().subscribe(
+      response => {
+        const blob = new Blob([response], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Report.pdf';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error => {
+        this.toastr.warning(error.error.message);
+      }
+    );
+  }
 }

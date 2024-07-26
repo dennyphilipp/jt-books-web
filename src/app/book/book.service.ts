@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book } from './book.model';
 
@@ -30,6 +30,13 @@ export class BookService {
 
   getById(id: any): Observable<Book> {
     return this.http.get<Book>(`${this.apiUrl}/find/${id}`);
+
+  }
+
+  getReport(): Observable<Blob> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    return this.http.get(`${this.apiUrl}/report`, { headers: headers, responseType: 'blob' });
 
   }
 }
