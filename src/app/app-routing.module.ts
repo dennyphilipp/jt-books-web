@@ -9,7 +9,7 @@ import { SubjectComponent } from './subject/subject.component';
 
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'livro', pathMatch: 'full' },
     { path: 'livro', component: BookComponent },
     { path: 'autor', component: AuthorComponent },
     { path: 'assunto', component: SubjectComponent },
