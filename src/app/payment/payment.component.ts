@@ -17,7 +17,6 @@ export class PaymentComponent {
   payments: any[] = [];
   types: any[] = [];
   books: any[] = [];
-  selectedBook: any;
   p: number = 1;
 
   constructor(private paymentService: PaymentService,
@@ -66,8 +65,16 @@ export class PaymentComponent {
     );
   }
 
-  onEdit(payment: Payment): void {
-    this.payment = new Payment(payment.id, payment.typeId, payment.bookId, payment.value);
+  onEdit(id: number): void {
+    console.log("teste");
+    this.paymentService.getById(id).subscribe(
+      response => {
+        this.payment = response;
+      },
+      error => {
+        this.toastr.warning(error.error.message);
+      }
+    );
   }
 
   onDelete(id: number): void {

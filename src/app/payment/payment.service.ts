@@ -27,4 +27,8 @@ export class PaymentService {
   getAll(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/find-all`);
   }
+
+  getById(id: number): Observable<Payment> {
+    return this.http.get<Payment>(`${this.apiUrl}/find/${id}`);
+  }
 }
